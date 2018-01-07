@@ -1,0 +1,19 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'fuenor/im_control.vim'
+
+[[plugins]] # カラースキーマ
+#repo = 'w0ng/vim-hybrid'
+#hook_add = '''
+#    set background=dark
+#    " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
+#    " ただし、Colorschemeイベントの発生が抑制されないよう nentedをつける。
+#    au MyAutoCmd VimEnter * nested colorscheme hybrid
+#'''
+

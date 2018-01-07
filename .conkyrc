@@ -1,0 +1,76 @@
+conky.config = {
+  use_spacer = 'left',
+  pad_percents = 3,
+  background = false,
+  double_buffer = true,
+  font = 'Arial Black:size=8',
+  use_xft = true,
+  alignment = 'top_right',
+  gap_x = 10,
+  gap_y = 40,
+  own_window_argb_visual = true,
+  own_window_argb_value = 0,
+  own_window_type = 'normal',
+  own_window_hints = 'undecorated,below,skip_taskbar,skip_pager,sticky',
+  own_window = true,
+  update_interval = 5.0,
+  override_utf8_locale = true,
+  draw_borders = false,
+  draw_shades = false,
+  default_shade_color = 'black',
+  draw_outline = true,
+  default_outline_color = '40b0ff',
+  default_color = 'white',
+  color1 = '0f3074',
+  color2 = '2d56ab',
+  color3 = '0f3074',
+  color4 = 'fbff8a',
+
+template0 = '${cpugraph cpu\1 \2,\3 40b0ff 2d56ab  100 -t}${offset -\3} CPU\1: ${cpu cpu\1}%',
+template1 = '${top name \1}${goto \2}${top pid \1}${goto \3}${top cpu \1}${goto \4}${top mem \1}${goto \5}${top io_perc \1}',
+template2 = '${top_mem name \1}${goto \2}${top_mem pid \1}${goto \3}${top_mem mem_vsize \1}${goto \4}${top_mem mem_res \1}${goto \5}${top_mem mem \1}',
+template3 = '${diskiograph_\2 \1 \3,\4 40b0ff 2d56ab 10000 -t}${offset -\4} /dev/\1 \2: ${diskio_\2 \1}',
+template4 = '${top_io name \1}${goto \2}${top_io pid \1}${goto \3}${top_io io_read \1}${goto \4}${top_io io_write \1}${goto \5}${top_io io_perc \1}',
+template5 = '${\2speedgraph \1 \3,\4 40b0ff 2d56ab 1000 -t}${offset -\4} \1 \2: ${\2speed \1}',
+template6 = '\1 ${goto 55} ${fs_used \2}/${fs_size \2} ${goto 150} ${color2} ${fs_bar 6 \2}',
+template7 = '${loadgraph \1,\2 40b0ff 2d56ab 4 -t}${offset -\2} Load Average: ${loadavg}${alignr}Processes: ${running_processes}/${processes}',
+template8 = '${color4} ${template\1 1 \2 \3 \4 \5}\n${color} ${template\1 2 \2 \3 \4 \5}\n${color} ${template\1 3 \2 \3 \4 \5}\n${color} ${template\1 4 \2 \3 \4 \5}\n${color} ${template\1 5 \2 \3 \4 \5}',
+
+}
+
+conky.text = [[
+${color1}System ${hr}
+${color } ${nodename} - ${sysname} ${kernel} on ${machine}
+${color } Uptime: ${uptime}
+${color1}${voffset 3}Processor ${hr}
+${color } CPU ${freq_g 0}GHz: ${color2}${cpubar cpu0}
+${color }${template7 20 325}${voffset -5}
+${color3} Command${goto 150}PID${goto 200}%CPU${goto 250}%MEM${goto 300}%I/O
+${color4} ${top name 1} ${goto 150}${top pid 1}${goto 200}${top cpu 1}${goto 250}${top mem 1}${goto 300}${top io_perc 1}
+${color } ${top name 2} ${goto 150}${top pid 2}${goto 200}${top cpu 2}${goto 250}${top mem 2}${goto 300}${top io_perc 2}
+${color } ${top name 3} ${goto 150}${top pid 3}${goto 200}${top cpu 3}${goto 250}${top mem 3}${goto 300}${top io_perc 3}
+${color } ${top name 4} ${goto 150}${top pid 4}${goto 200}${top cpu 4}${goto 250}${top mem 4}${goto 300}${top io_perc 4}
+
+${color1}${voffset 3}Memory ${hr}
+${color } RAM: ${mem}/${memmax} - ${memperc}%${goto 190}${color2}${membar}
+${color } Swap: ${swap}/${swapmax} - ${swapperc}%${goto 190}${color2}${swapbar}
+${color } B/C: ${buffers}/${cached}
+${color3} Command${goto 150}PID${goto 200}VIRT${goto 250}RES${goto 300}%MEM
+${color4}${top_mem name 1}${goto 150}${top_mem pid 1}${goto 200}${top_mem mem_vsize 1}${goto 250}${top_mem mem_res 1}${goto 300}${top_mem mem 1}
+${color }${top_mem name 2}${goto 150}${top_mem pid 2}${goto 200}${top_mem mem_vsize 2}${goto 250}${top_mem mem_res 2}${goto 300}${top_mem mem 2}
+${color }${top_mem name 3}${goto 150}${top_mem pid 3}${goto 200}${top_mem mem_vsize 3}${goto 250}${top_mem mem_res 3}${goto 300}${top_mem mem 3}
+${color }${top_mem name 4}${goto 150}${top_mem pid 4}${goto 200}${top_mem mem_vsize 4}${goto 250}${top_mem mem_res 4}${goto 300}${top_mem mem 4}
+${memgraph}
+
+${color1}${voffset 3}Disk${hr}
+${color }/ ${fs_used /}/${fs_size /} ${color2}${fs_bar 6 /}
+
+${color1}${voffset 3}Network ${hr}
+${color }IP:   ${addr wlp11s0}
+${color }Up:   ${upspeed wlp11s0}
+${color }Down: ${downspeed wlp11s0}
+
+${color1}${voffset -5}Calendar ${hr}
+${color }${font DejaVu Sans Mono:style=Bold:size=7}${execi 600 gcal --type=standard --highlighting='<:>:[:]' -s Su . | grep -v "^ *$" | colrm 23 26 | colrm 45 48}${font}
+${exec /usr/lib/update-notifier/apt-check --human-readable}
+]]
