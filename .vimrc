@@ -152,11 +152,13 @@ set noswapfile                      " SWAPファイルを作らない
 
 " クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
 " 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
-if has('unnamedplus')
-    set clipboard& clipboard+=unnamedplus,unnamed
-else
-    set clipboard& clipboard+=unnamed
-endif
+"if has('unnamedplus')
+"    set clipboard& clipboard+=unnamedplus,unnamed
+"else
+"    set clipboard& clipboard+=unnamed
+"endif
+set clipboard&
+set clipboard^=unnamedplus
 
 "------------------------------------------------
 " インデント
