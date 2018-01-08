@@ -1,0 +1,8 @@
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+# unite.vimを読み込んだら一緒に読み込む
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
