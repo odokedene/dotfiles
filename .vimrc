@@ -32,13 +32,11 @@ if dein#load_state(s:dein_dir)
 
     let g:rc_dir = expand('~/dotfiles/dein')
     let s:toml = g:rc_dir . '/dein.toml'
-" まだlazy_tomlを使用していないのでコメントアウト
-"    let s:lazy_toml = g:rc_dir . 'dein_lazy.toml'
+    let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
     " TOMLファイルにpluginを記述
     call dein#load_toml(s:toml,      {'lazy': 0})
-" まだlazy_tomlを使用していないのでコメントアウト
-"    call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
     call dein#end()
     call dein#save_state()
 endif
@@ -266,6 +264,18 @@ nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
 nnoremap <silent> [toggle]l :setl list!<CR>:setl list?<CR>
 nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
+
+" Unite.vimキー設定
+nnoremap [unite] <Nop>
+nmap <Space>u [unite]
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]r :<C-u>Unite register<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
+nnoremap <silent> [unite]w :<C-u>Unite window<CR>
 
 " ma&ke, grepなどのコマンド後に自動的にQuickFixを開く
 autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
