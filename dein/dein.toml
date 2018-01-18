@@ -1,9 +1,15 @@
 [[plugins]] # プラグインマネージャー
 repo = 'Shougo/dein.vim'
 
+[[plugins]] # ファイラー
+repo = 'Shougo/vimfiler'
+
 [[plugins]] # toml syntax
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]] # ステータスライン
+repo = 'itchyny/lightline.vim'
 
 [[plugins]] # 日本語入力固定、日本語から戻すプラグイン
 repo = 'fuenor/im_control.vim'

@@ -9,4 +9,4 @@ on_source = ['unite.vim']
 
 [[plugins]] # python コード補完
 repo = "davidhalter/jedi-vim"
-on_source = ['python']
+on_ft = ['python']
